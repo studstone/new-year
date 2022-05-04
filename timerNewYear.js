@@ -2,7 +2,7 @@ const greetings = document.querySelector('.hello');
 const dayWeek = document.querySelector('.day-week');
 const time = document.querySelector('.time');
 const newYear = document.querySelector('.new-year');
-const day = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+// const day = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
 const date = new Date();
 
@@ -23,19 +23,23 @@ const outputDisplay = () => {
 
   if (date.getHours() >= 4 && date.getHours() <= 10) {
     greetings.textContent = 'Доброе утро';
-  } else if (date.getHours() > 10 && date.getHours() <= 17) {
+  }
+  if (date.getHours() > 10 && date.getHours() <= 17) {
     greetings.textContent = 'Добрый день';
-  } else if (date.getHours() > 17 && date.getHours() <= 21) {
+  }
+  if (date.getHours() > 17 && date.getHours() <= 21) {
     greetings.textContent = 'Добрый вечер';
-  } else if (date.getHours() > 21 && date.getHours() < 4) {
+  }
+  if (date.getHours() > 21) {
+    greetings.textContent = 'Доброй ночи';
+  }
+  if (date.getHours() >= 0 && date.getHours() < 4) {
     greetings.textContent = 'Доброй ночи';
   }
 
-  day.forEach((element, index) => {
-    if (date.getDay() === index) {
-      dayWeek.textContent = 'Сегодня: ' + element;
-    }
-  });
+  dayWeek.textContent = `Сегодня: ${date.toLocaleString('ru', {
+    weekday: 'long'
+  })}`;
 
   time.textContent = date.toLocaleTimeString('en');
 
